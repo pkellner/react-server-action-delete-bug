@@ -35,3 +35,17 @@ export async function POST(request: NextRequest) {
     },
   });
 }
+
+/*
+Prisma Model:
+
+model Attendee {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  firstName String
+  lastName  String
+  created   DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+ */

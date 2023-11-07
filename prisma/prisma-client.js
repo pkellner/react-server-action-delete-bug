@@ -6,7 +6,7 @@ const prisma = new PrismaClient().$extends({
   query: {
     $allModels: {
       async $allOperations({ model, operation, args, query }) {
-        await sleep(350);
+        await sleep(1000);
         return query(args);
       },
     },
