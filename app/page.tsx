@@ -5,6 +5,8 @@ import React from "react";
 import {revalidatePath} from "next/cache";
 import prisma from "@/prisma/prisma-client";
 
+
+
 export default async function AttendeesPage() {
 
   //const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -19,8 +21,6 @@ export default async function AttendeesPage() {
       },
     });
     revalidatePath("/");
-
-    console.log("deleteAttendee", formData);
   }
 
   const attendees = await prisma.attendee.findMany();
@@ -40,7 +40,7 @@ export default async function AttendeesPage() {
         </tr>
       </thead>
       <tbody>
-        {attendees.map((attendee) => (
+        {attendees.map((attendee : any) => (
           <tr key={attendee.id}>
             <td>
               <form action={deleteAttendee}>
