@@ -1,7 +1,14 @@
-'use client'
-import React, {useState} from "react";
+"use client";
+import React, { useState } from "react";
+import AttendeeModalDetail from "@/app/23-all-client-component-suspense-add-tooltip/attendee-modal-detail";
 
-export default function AttendeeModal({children, attendee}: { children: React.ReactNode, attendee: any }) {
+export default function AttendeeModal({
+  children,
+  attendee,
+}: {
+  children: React.ReactNode;
+  attendee: any;
+}) {
   const [showPopup, setShowPopup] = useState(false);
 
   return (
@@ -13,18 +20,7 @@ export default function AttendeeModal({children, attendee}: { children: React.Re
         {children}
       </div>
       {showPopup && (
-        <div
-          className="card position-absolute"
-          style={{
-            top: "150%",
-            left: "70%",
-            transform: "translateX(-50%)",
-            zIndex: "1060",
-            backgroundColor: "lightblue",
-          }}
-        >
-          <div className="card-body">{attendee.email}</div>
-        </div>
+        <AttendeeModalDetail id={attendee.id} email={attendee.email} />
       )}
     </div>
   );
