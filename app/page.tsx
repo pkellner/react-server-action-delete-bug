@@ -29,12 +29,26 @@ export default function Home() {
               12-all-client-component-single-loading-state-plus-sort
             </a>
           </li>{" "}
-          <li>
-            <a href="/13-all-client-component-suspense-use-hook">
-              13-all-client-component-suspense-use-hook
-            </a>
-          </li>
         </ul>
+        <div>
+          <ul>
+            <li>
+              <a href="/21-all-client-component-suspense-use-hook">
+                21-all-client-component-suspense-use-hook
+              </a>
+            </li>
+            <li>
+              <a href="/22-all-client-component-suspense-use-hook-multiple">
+                22-all-client-component-suspense-use-hook-multiple
+              </a>
+            </li>
+            <li>
+              <a href="/23-all-client-component-suspense-add-tooltip">
+                23-all-client-component-suspense-add-tooltip
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

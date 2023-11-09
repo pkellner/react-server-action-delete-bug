@@ -2,6 +2,7 @@
 import { PrismaClient } from "@prisma/client";
 import { type NextRequest } from "next/server";
 
+
 const prisma = new PrismaClient();
 
 export async function GET(
@@ -27,6 +28,9 @@ export async function GET(
     if (!attendee) {
       return new Response(null, { status: 404 });
     }
+    const randomNumberBetween1000And5000 = Math.floor(Math.random() * 4000) + 1000;
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+    await sleep(randomNumberBetween1000And5000);
     return new Response(JSON.stringify(attendee, null, 2), {
       status: 200,
       headers: {
