@@ -9,25 +9,37 @@ export default function AttendeeDisplay({ attendee }: { attendee: any }) {
   };
 
   const DataPlaceholder = () => (
-    <div
-      className="data-placeholder"
-      style={{
-        height: '20px', // Fixed height for consistency
-        backgroundColor: '#e0e0e0',
-        borderRadius: '4px',
-        animation: 'placeholderPulse 1.5s infinite ease-in-out',
-      }}
-    ></div>
+    <div className="data-placeholder"></div>
   );
 
   return (
     <>
       <style>
         {`
-          @keyframes placeholderPulse {
-            0% { background-color: #e0e0e0; }
-            50% { background-color: #f0f0f0; }
-            100% { background-color: #e0e0e0; }
+          @keyframes placeholderShimmer{
+            0% {
+              background-position: -468px 0
+            }
+            100% {
+              background-position: 468px 0
+            }
+          }
+
+          .data-placeholder {
+            width: 100%;
+            height: 20px;
+            background: #f6f7f8;
+            background-image: linear-gradient(to right, #f6f7f8 0%, #edeef1 20%, #f6f7f8 40%, #f6f7f8 100%);
+            background-repeat: no-repeat;
+            background-size: 800px 104px;
+            display: inline-block;
+            position: relative;
+            border-radius: 4px;
+            animation-duration: 1.2s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+            animation-name: placeholderShimmer;
+            animation-timing-function: linear;
           }
 
           .data-row {
@@ -38,10 +50,7 @@ export default function AttendeeDisplay({ attendee }: { attendee: any }) {
             margin-bottom: 10px;
           }
 
-          .data-placeholder {
-            width: 100%;
-            min-height: 20px; // Ensures the placeholder has the same height as text
-          }
+          // Other styles remain unchanged
         `}
       </style>
       <div
@@ -52,8 +61,8 @@ export default function AttendeeDisplay({ attendee }: { attendee: any }) {
           transform: "translateX(-50%)",
           zIndex: "1060",
           backgroundColor: "lightblue",
-          width: '24rem', // Increased width for more generous space
-          padding: '2rem', // Increased padding for more space inside the card
+          width: '24rem',
+          padding: '2rem',
           boxSizing: 'border-box',
         }}
       >
