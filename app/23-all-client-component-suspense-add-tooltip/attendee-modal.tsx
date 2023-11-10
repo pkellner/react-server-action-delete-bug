@@ -20,7 +20,7 @@ export default function AttendeeModal({
         {children}
       </div>
       {showPopup && (
-        <AttendeeModalDetail id={attendee.id} email={attendee.email} />
+        <AttendeeModalDetail attendee={attendee} />
       )}
     </div>
   );
