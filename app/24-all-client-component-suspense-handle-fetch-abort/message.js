@@ -13,6 +13,8 @@ export default function Message({ messagePromise }) {
     </div>
   );
 
+}
+
 const Popup = ({ children, popupContent }) => {
   const [showPopup, setShowPopup] = useState(false);
 

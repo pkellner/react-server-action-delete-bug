@@ -1,8 +1,26 @@
 "use client";
-import React, { useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import AttendeeModalDetail from "@/app/24-all-client-component-suspense-handle-fetch-abort/attendee-modal-detail";
+import { abortController } from "@/app/24-all-client-component-suspense-handle-fetch-abort/attendees-list";
+import { ErrorBoundary } from "react-error-boundary";
+import {fetchAttendee} from "@/app/24-all-client-component-suspense-handle-fetch-abort/lib";
 
+function fallbackRender({
+  error,
+  resetErrorBoundary,
+}: {
+  error: Error;
+  resetErrorBoundary: any;
+}) {
+  // Call resetErrorBoundary() to reset the error boundary and retry the render.
 
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre style={{ color: "red" }}>{error.message}</pre>
+    </div>
+  );
+}
 
 export default function AttendeeModal({
   children,
@@ -13,17 +31,28 @@ export default function AttendeeModal({
 }) {
   const [showPopup, setShowPopup] = useState(false);
 
+  const attendeePromise = fetchAttendee(attendee.id);
+
   return (
-    <div className="position-relative d-inline-block">
-      <div
-        onMouseEnter={() => setShowPopup(true)}
-        onMouseLeave={() => setShowPopup(false)}
-      >
-        {children}
+    <ErrorBoundary
+      fallbackRender={fallbackRender}
+      onReset={(details) => {
+        console.log("onReset called", details);
+      }}
+    >
+      <div className="position-relative d-inline-block">
+        <div
+          onMouseEnter={() => {
+            setShowPopup(true);
+          }}
+          onMouseLeave={() => {
+            setShowPopup(false);
+          }}
+        >
+          {children}
+        </div>
+        {showPopup && <AttendeeModalDetail attendee={attendee} attendeePromise={attendeePromise} />}
       </div>
-      {showPopup && (
-        <AttendeeModalDetail attendee={attendee} />
-      )}
-    </div>
+    </ErrorBoundary>
   );
 }

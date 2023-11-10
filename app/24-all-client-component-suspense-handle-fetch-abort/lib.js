@@ -1,25 +1,36 @@
 "use client";
 
+import { abortController } from "@/app/24-all-client-component-suspense-handle-fetch-abort/attendees-list";
+
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export async function fetchAttendee(id) {
-  //const response = await fetch(`/api/attendee/${id}`);
-  const response = await fetch(`http://localhost:3001/api/attendee/${id}`);
-  const randomNumberBetween1000And5000 =
-    Math.floor(Math.random() * 4000) + 1000;
-  console.log(`Sleeping for ${randomNumberBetween1000And5000}ms`);
-  await sleep(randomNumberBetween1000And5000);
-  const data = await response.json();
-  return data
+export async function fetchAttendee(id, signal) {
+  try {
+    console.log("fetchAttendee: starting to fetch data")
+    const response = await fetch(`http://localhost:3001/api/attendee/${id}`, {
+      signal:signal,
+    });
+
+    const randomNumberBetween1000And5000 =
+      Math.floor(Math.random() * 4000) + 1000;
+    console.log(`Sleeping for ${randomNumberBetween1000And5000}ms`);
+    await sleep(randomNumberBetween1000And5000);
+
+    const data = await response.json();
+    console.log("fetchAttendee: done fetching data",data);
+    return data;
+  } catch (e) {
+    console.log("fetchAttendee: e:",e);
+    throw e;
+  }
 }
 
 export async function fetchAttendees() {
-
   const response = await fetch(`http://localhost:3001/api/attendee/`);
   const randomNumberBetween1000And5000 =
     Math.floor(Math.random() * 4000) + 1000;
   console.log(`Sleeping for ${randomNumberBetween1000And5000}ms`);
   await sleep(randomNumberBetween1000And5000);
   const data = await response.json();
-  return data.slice(0,2)
+  return data.slice(0, 2);
 }
