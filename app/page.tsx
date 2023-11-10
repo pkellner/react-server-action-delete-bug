@@ -47,6 +47,11 @@ export default function Home() {
                 23-all-client-component-suspense-add-tooltip
               </a>
             </li>
+            <li>
+              <a href="/24-all-client-component-suspense-handle-fetch-abort">
+                24-all-client-component-suspense-handle-fetch-abort
+              </a>
+            </li>
           </ul>
         </div>
       </div>
