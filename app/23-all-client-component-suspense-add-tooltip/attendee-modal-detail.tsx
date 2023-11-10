@@ -23,15 +23,6 @@ export default function AttendeeModalDetail({ attendee }: { attendee: any }) {
   );
 }
 
-
-
-
-
-
-
-
-
-
 function AttendeeDetailFull({ attendeePromise }: { attendeePromise: any }) {
   const attendee: any = use(attendeePromise);
   console.log("attendee:", attendee);
@@ -47,9 +38,7 @@ function AttendeeDetailFull({ attendeePromise }: { attendeePromise: any }) {
         backgroundColor: "lightblue",
       }}
     >
-      <AttendeeDisplay
-        attendee={attendee}
-      />
+      <AttendeeDisplay attendee={attendee} />
     </div>
   );
 }
