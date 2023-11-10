@@ -30,8 +30,23 @@ export default function AttendeeModal({
   attendee: any;
 }) {
   const [showPopup, setShowPopup] = useState(false);
+  const abortControllerRef = useRef(null);
 
-  const attendeePromise = fetchAttendee(attendee.id);
+  useEffect(() => {
+    // Cleanup function to abort fetch when the component is unmounted
+    return () => {
+      if (abortControllerRef.current) {
+
+        // @ts-ignore
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
+
+
+
+  // @ts-ignore
+  const attendeePromise = fetchAttendee(attendee.id, abortControllerRef.signal);
 
   return (
     <ErrorBoundary
@@ -43,9 +58,18 @@ export default function AttendeeModal({
       <div className="position-relative d-inline-block">
         <div
           onMouseEnter={() => {
+
+            // @ts-ignore
+            abortControllerRef.current = new AbortController();
             setShowPopup(true);
           }}
           onMouseLeave={() => {
+            if (abortControllerRef.current) {
+
+              // @ts-ignore
+              abortControllerRef.current.abort();
+            }
+
             setShowPopup(false);
           }}
         >

@@ -1,7 +1,5 @@
 "use client";
 
-import { abortController } from "@/app/24-all-client-component-suspense-handle-fetch-abort/attendees-list";
-
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export async function fetchAttendee(id, signal) {
