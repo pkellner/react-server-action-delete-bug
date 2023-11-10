@@ -1,5 +1,6 @@
 import React from "react";
 
+// Shows Attendee Care. This includes placeholder images if email and dates are undefined
 export default function AttendeeDisplay({ attendee }: { attendee: any }) {
   const formatDate = (date: Date) => {
     return date ? new Intl.DateTimeFormat('en-US', {

@@ -2,15 +2,11 @@
 import React, { Suspense, use } from "react";
 import AttendeeModal from "@/app/24-all-client-component-suspense-handle-fetch-abort/attendee-modal";
 
-export let abortController = new AbortController();
-
 export default function AttendeesList({
   attendeesListPromise,
 }: {
   attendeesListPromise: any;
 }) {
-
-
 
   const attendeesList: any = use(attendeesListPromise);
 
